@@ -1,11 +1,18 @@
 {
   "name": "vue-mentionable",
+  "author": "Tuna Yagci (https://www.linkedin.com/in/tuna-ya%C4%9Fc%C4%B1-848b6183)",
   "version": "0.1.0",
-  "private": true,
+  "description": "A collection of Vue components where user can mention anything with any identifier.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
+  },
+  "homepage": "https://github.com/TunaYagci/vue-mentionable",
+  "license": "(MIT OR Apache-2.0)",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TunaYagci/vue-mentionable.git"
   },
   "dependencies": {
     "bootstrap": "^3.4.1",
@@ -29,5 +36,35 @@
     "propdoc": "^0.9.3",
     "sass-loader": "^7.3.1",
     "node-sass": "^4.13.0"
-  }
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "main": "./dist/vue-mentionable.common.js",
+  "files": [
+    "dist/*",
+    "src/MentionableTextarea.vue"
+  ],
+  "keywords": [
+    "vue mention",
+    "vue auto complete",
+    "vue autocomplete textarea",
+    "vue autocomplete mention"
+  ]
 }

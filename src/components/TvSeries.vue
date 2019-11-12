@@ -6,7 +6,7 @@
             @input="onInput"
             @onMention="onMention(instance, $event)"
             :modeIdentifiers="modeIdentifiers"
-            :isLoading="true"/>
+            :isLoading="isLoading"/>
 </template>
 
 <script>
@@ -28,9 +28,6 @@
                 searchParam: '',
                 tvSeries: []
             }
-        },
-        created() {
-            this.isLoading = true;
         },
         computed: {
             classes() {
@@ -76,7 +73,7 @@
                     backendPromise(this.searchParam)
                         .then((tvSeries) => tvSeries.sort((a, b) => a.serial - b.serial))
                         .then((tvSeries) => this.tvSeries = tvSeries)
-                        .finally(() => this.isLoading = false);
+                        .finally(() => setTimeout(() => this.isLoading = false, 1000));
                 }
             },
             onDummyEvent(event) {
@@ -86,7 +83,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

@@ -22,12 +22,12 @@
                   @keyup.delete="onDeleteKeyPressed">
         </textarea>
         <ul class="auto-complete dropdown-menu"
-
+            v-show="open"
             ref="list"
             tabindex="-1"
             :id="elementId('UL')"
             @blur="onFocusOut">
-            <i v-if="isLoading" class="fas fa-refresh fa-spin auto-complete-spinner"/>
+            <i v-if="isLoading" class="auto-complete-spinner" :class="loadingIconClass"/>
             <li v-for="(suggestion, index) in suggestions"
                 :key="index"
                 class="auto-complete"
@@ -111,7 +111,7 @@
             },
             loadingIconClass: {
                 type: String,
-                default: 'fa fa-refresh fa-spin',
+                default: 'fas fa-sync fa-spin',
                 required: false,
                 note: 'Loading icon class'
             }

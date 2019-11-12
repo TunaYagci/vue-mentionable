@@ -1,24 +1,32 @@
 # vue-mentionable
 
-## Project setup
-```
-npm install
+## Install
+
+* `npm i vue-mentionable`
+* (optional) Add `fontawesome` to your `index.html for **loading icon**
+
+## Usage
+
+Register in `main.js`
+```js
+import vueMentionable from 'vue-mentionable';
+
+Vue.use(vueMentionable);
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+Use in any component
+```html
+<mentionable-textarea :modeIdentifiers="modeIdentifiers" />
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Docs
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See: https://tunayagci.github.io/vue-mentionable/#/docs
+
+### Mode Identifiers ###
+
+Mode identifiers TODO
+
+## Example
+
+See the [source code](https://github.com/TunaYagci/vue-mentionable/blob/master/src/components/TvSeries.vue) for [live example](https://tunayagci.github.io/vue-mentionable/)

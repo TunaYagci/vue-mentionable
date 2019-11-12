@@ -1,12 +1,16 @@
 # vue-mentionable
 ![npm](https://img.shields.io/npm/v/vue-mentionable)
 
-## Install
+Vue-mentionable is a series of Vue components where users can mention with any identifier, like `@admin` or `#156`, etc.
+
+## Roadmap
+1. Mentionable Textarea :white_check_mark:
+1. Mentionable Input :soon:
+
+## Installation
 
 * `npm i vue-mentionable`
 * (optional) Add `fontawesome` to your `index.html for **loading icon**
-
-## Usage
 
 Register in `main.js`
 ```js
@@ -19,6 +23,8 @@ Use in any component
 ```html
 <mentionable-textarea :modeIdentifiers="modeIdentifiers" />
 ```
+
+See [here](https://github.com/TunaYagci/vue-mentionable/blob/master/src/components/TvSeries.vue) for examples
 
 ## Docs
 

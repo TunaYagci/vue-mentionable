@@ -1,4 +1,5 @@
 # vue-mentionable
+![npm](https://img.shields.io/npm/v/vue-mentionable)
 
 ## Install
 

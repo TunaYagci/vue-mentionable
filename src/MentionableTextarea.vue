@@ -10,27 +10,24 @@
                   :placeholder="placeholder"
                   :maxlength="maxlength"
                   :class="classes"
-
                   @click="onFocusIn"
                   @blur="onFocusOut"
                   ref="textarea"
                   :id="elementId('TEXTAREA')"
-
                   @keydown.enter="enter"
                   @keydown.down="down"
                   @keydown.up="up"
                   @keyup.left="leftRightArrow"
                   @keyup.right="leftRightArrow"
-
                   @keyup.delete="onDeleteKeyPressed">
         </textarea>
         <ul class="auto-complete dropdown-menu"
-            v-show="open"
+
             ref="list"
             tabindex="-1"
             :id="elementId('UL')"
             @blur="onFocusOut">
-            <i v-if="isLoading" class="fa fa-refresh fa-spin auto-complete-spinner" :class="loadingIconClass" ></i>
+            <i v-if="isLoading" class="fas fa-refresh fa-spin auto-complete-spinner"/>
             <li v-for="(suggestion, index) in suggestions"
                 :key="index"
                 class="auto-complete"
@@ -89,7 +86,7 @@
             },
             maxlength: {
                 type: Number,
-                default: 5,
+                required: false,
                 note: 'Maximum length of textarea element'
             },
             classes: {
@@ -115,6 +112,7 @@
             loadingIconClass: {
                 type: String,
                 default: 'fa fa-refresh fa-spin',
+                required: false,
                 note: 'Loading icon class'
             }
         },

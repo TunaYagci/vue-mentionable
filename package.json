@@ -17,8 +17,8 @@
   },
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "textarea-caret": "^3.1.0",
     "random-uuid": "^1.0.2",
+    "textarea-caret": "^3.1.0",
     "vue-autosize": "^1.0.2"
   },
   "devDependencies": {

@@ -1,13 +1,12 @@
 <template>
     <mentionable-textarea
             ref="mentionableTextarea"
-            :rows="5"
             :classes="classes"
             placeholder="Start mentioning users with @ or tv series with #"
             @input="onInput"
             @onMention="onMention(instance, $event)"
             :modeIdentifiers="modeIdentifiers"
-            :isLoading="isLoading"/>
+            :isLoading="true"/>
 </template>
 
 <script>

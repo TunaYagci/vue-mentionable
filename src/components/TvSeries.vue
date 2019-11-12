@@ -2,7 +2,7 @@
     <mentionable-textarea
             ref="mentionableTextarea"
             :classes="classes"
-            placeholder="Start mentioning users with @ or tv series with #"
+            placeholder="Start mentioning users with @ or tv series with #1 #2 etc"
             @input="onInput"
             @onMention="onMention(instance, $event)"
             :modeIdentifiers="modeIdentifiers"

@@ -1,7 +1,7 @@
 {
   "name": "vue-mentionable",
   "author": "Tuna Yagci (https://www.linkedin.com/in/tuna-ya%C4%9Fc%C4%B1-848b6183)",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A collection of Vue components where user can mention anything with any identifier.",
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -63,7 +63,10 @@
     "src/MentionableTextarea.vue"
   ],
   "keywords": [
+    "vue mentionable",
     "vue mention",
+    "mention textarea",
+    "mentionable textarea",
     "vue auto complete",
     "vue autocomplete textarea",
     "vue autocomplete mention"

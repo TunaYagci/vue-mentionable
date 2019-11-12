@@ -58,8 +58,7 @@
   },
   "main": "./dist/vue-mentionable.common.js",
   "files": [
-    "dist/*",
-    "src/MentionableTextarea.vue"
+    "src/index.js"
   ],
   "keywords": [
     "vue mention",

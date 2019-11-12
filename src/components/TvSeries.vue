@@ -3,7 +3,7 @@
             ref="mentionableTextarea"
             :rows="5"
             :classes="classes"
-            placeholder="Write a comment or drag your files here to upload."
+            placeholder="Start mentioning users with @ or tv series with #"
             @input="onInput"
             @onMention="onMention(instance, $event)"
             :modeIdentifiers="modeIdentifiers"

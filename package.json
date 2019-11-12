@@ -1,11 +1,12 @@
 {
   "name": "vue-mentionable",
   "author": "Tuna Yagci (https://www.linkedin.com/in/tuna-ya%C4%9Fc%C4%B1-848b6183)",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A collection of Vue components where user can mention anything with any identifier.",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "bundle": "vue-cli-service build --target lib --name vueMentionable src/index.js",
     "lint": "vue-cli-service lint"
   },
   "homepage": "https://github.com/TunaYagci/vue-mentionable",

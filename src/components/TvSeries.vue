@@ -30,6 +30,9 @@
                 tvSeries: []
             }
         },
+        created() {
+            this.isLoading = true;
+        },
         computed: {
             classes() {
                 return ['form-control', 'margin-bottom-6'];
@@ -77,7 +80,7 @@
                         .finally(() => this.isLoading = false);
                 }
             },
-            onDummyEvent(event){
+            onDummyEvent(event) {
                 this.$refs.mentionableTextarea.clearSelection();
                 this.$refs.mentionableTextarea.setSelection(event.text);
             }

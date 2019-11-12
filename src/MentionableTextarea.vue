@@ -1,6 +1,7 @@
 <template>
     <div style="position:relative">
-        <textarea class="form-control margin-bottom-6" autocomplete="off"
+        <textarea class="form-control"
+                  autocomplete="off"
                   @input="onInput($event)"
                   :value="selection"
                   v-autosize="selection"
@@ -23,13 +24,13 @@
 
                   @keyup.delete="onDeleteKeyPressed">
         </textarea>
-        <ul class="auto-complete dropdown-menu un-focus"
+        <ul class="auto-complete dropdown-menu"
             v-show="open"
             ref="list"
             tabindex="-1"
             :id="elementId('UL')"
             @blur="onFocusOut">
-            <i v-if="isLoading" class="fa fa-refresh fa-spin auto-complete-spinner"></i>
+            <i v-if="isLoading" class="fa fa-refresh fa-spin auto-complete-spinner" :class="loadingIconClass" ></i>
             <li v-for="(suggestion, index) in suggestions"
                 :key="index"
                 class="auto-complete"
@@ -110,6 +111,11 @@
                 type: String,
                 default: '',
                 note: 'Please use this to set initial value of textarea'
+            },
+            loadingIconClass: {
+                type: String,
+                default: 'fa fa-refresh fa-spin',
+                note: 'Loading icon class'
             }
         },
         data() {
@@ -332,7 +338,6 @@
     }
 
     textarea {
-        font-size: 14px;
         resize: none;
     }
 </style>

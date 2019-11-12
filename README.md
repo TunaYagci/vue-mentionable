@@ -3,6 +3,8 @@
 
 Vue-mentionable is a series of Vue components where users can mention with any identifier, like `@admin` or `#156`, etc.
 
+![](/public/mentionable1.gif)
+
 ## Roadmap
 1. Mentionable Textarea :white_check_mark:
 1. Mentionable Input :soon:
@@ -31,6 +33,8 @@ See [here](https://github.com/TunaYagci/vue-mentionable/blob/master/src/componen
 For props and events, see: https://tunayagci.github.io/vue-mentionable/#/docs
 
 ### 1. Mode Identifiers ###
+
+![](/public/mentionable-code1.gif)
 
 * A mode is simply which suggestion component is being displayed.
 * You **have to** register your modes to `mentionable-textarea`.

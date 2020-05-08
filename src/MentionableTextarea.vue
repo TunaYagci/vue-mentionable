@@ -153,11 +153,30 @@
                 return this.$refs.textarea.selectionStart;
             },
             setListPosition(index) {
+
+                let textAreaBounds = this.$refs.textarea.getBoundingClientRect();
+                let textAreaWidth = textAreaBounds.width;
+
+                let listBounds = this.$refs.list.getBoundingClientRect();
+                let listWidth = listBounds.width;
+
+
                 if (this.$refs && this.$refs.textarea && this.getSelectionStart() != null) {
                     let coords = getCaretCoordinates(this.$refs.textarea, index);
-                    this.$refs.list.style.top = coords.top + 16 + 'px';
-                    this.$refs.list.style.left = coords.left + 8 + 'px';
+
+                    if (listWidth > 0) {
+                        let leftPos = listWidth + coords.left + 8;
+                        if (leftPos <= textAreaWidth) {
+                            this.$refs.list.style.top = coords.top + 16 + 'px';
+                            this.$refs.list.style.left = coords.left + 8 + 'px';
+                        } else {
+                            let availableWidth = textAreaWidth - listWidth;
+                            this.$refs.list.style.top = coords.top + 16 + 'px';
+                            this.$refs.list.style.left = availableWidth + 'px';
+                        }
+                    }
                 }
+
             },
             onFocusOut(event) {
                 if (event.relatedTarget && event.relatedTarget.id && this.elementIdMap.get(event.relatedTarget.nodeName) === event.relatedTarget.id) {

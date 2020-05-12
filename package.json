@@ -69,6 +69,8 @@
     "mentionable textarea",
     "vue auto complete",
     "vue autocomplete textarea",
-    "vue autocomplete mention"
+    "vue autocomplete mention",
+    "vue autocomplete hashtag",
+    "hashtag textarea"
   ]
 }

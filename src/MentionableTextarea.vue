@@ -17,6 +17,8 @@
                   @keydown.enter="enter"
                   @keydown.down="down"
                   @keydown.up="up"
+                  @keydown.esc="escape"
+                  @keydown.tab="enter"
                   @keyup.left="leftRightArrow"
                   @keyup.right="leftRightArrow"
                   @keyup.delete="onDeleteKeyPressed">
@@ -245,6 +247,15 @@
                     this.identifierControl();
                 }
             },
+             scrollSelectedIntoView(){
+                let selected = document.getElementsByClassName("active");
+                if (selected[0] != null){
+                    let oH = document.getElementsByClassName('dropdown-menu')[0].offsetHeight;
+                    let oT = selected[0].offsetTop;                    
+                    let d = oT - oH;                    
+                    document.getElementsByClassName('dropdown-menu')[0].scrollTo(0, d+selected[0].clientHeight);          
+                }
+            },
             updateSelectionAndPublishEvent(value) {
                 this.selection = value;
                 this.$emit('input', this.selection);
@@ -270,22 +281,32 @@
             },
             up(event) {
                 if (this.open) {
-                    this.current > 0 && this.current--;
+                    if (this.suggestions.length > this.current && this.current > 0){                        
+                        this.current--;                        
+                    }                     
                     event.preventDefault();
                 }
             },
             down(event) {
                 if (this.open) {
-                    this.current >= 0 && this.current++;
+                    if (this.current >= 0 && this.suggestions.length -1 > this.current){                        
+                        this.current++;
+                    }                    
                     event.preventDefault();
                 }
             },
             leftRightArrow() {
                 this.identifierControl();
             },
+            escape(){
+                if (this.open) {
+                    this.closeSuggestions();
+                }
+            },
             bindClass(index, suggestion) {
                 let className = "";
                 if (suggestion) {
+                     Vue.nextTick(() => this.scrollSelectedIntoView());
                     if (index === this.current && suggestion.id !== "-1" && suggestion.id !== -1) {
                         className = "active ";
                     }

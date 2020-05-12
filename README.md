@@ -104,3 +104,9 @@ Note: you should most likely use `debounce` for user inputs. See [here](https://
 ## Example
 
 See the [source code](https://github.com/TunaYagci/vue-mentionable/blob/master/src/components/TvSeries.vue) for [live example](https://tunayagci.github.io/vue-mentionable/)
+
+## Keyboard Shortcuts
+
+ - Up/Down arrow key to highlight suggestion
+ - Escape key to close suggestions list
+ - Enter/Tab key to select current highlighted suggestion

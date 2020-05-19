@@ -1,47 +1,47 @@
 <template>
     <div style="position:relative">
-        <textarea class="form-control"
-                  autocomplete="off"
-                  @input="onInput($event)"
-                  :value="selection"
-                  v-autosize="selection"
-                  :title="title"
-                  :rows="rows"
-                  :placeholder="placeholder"
-                  :maxlength="maxlength"
-                  :class="classes"
-                  @click="onFocusIn"
-                  @blur="onFocusOut"
-                  ref="textarea"
+        <textarea :class="classes"
                   :id="elementId('TEXTAREA')"
-                  @keydown.enter="enter"
+                  :maxlength="maxlength"
+                  :placeholder="placeholder"
+                  :rows="rows"
+                  :title="title"
+                  :value="selection"
+                  @blur="onFocusOut"
+                  @click="onFocusIn"
+                  @input="onInput($event)"
                   @keydown.down="down"
-                  @keydown.up="up"
+                  @keydown.enter="enter"
                   @keydown.esc="escape"
                   @keydown.tab="enter"
+                  @keydown.up="up"
+                  @keyup.delete="onDeleteKeyPressed"
                   @keyup.left="leftRightArrow"
                   @keyup.right="leftRightArrow"
-                  @keyup.delete="onDeleteKeyPressed">
+                  autocomplete="off"
+                  class="form-control"
+                  ref="textarea"
+                  v-autosize="selection">
         </textarea>
-        <ul class="auto-complete dropdown-menu"
-            v-show="open"
+        <ul :id="elementId('UL')"
+            @blur="onFocusOut"
+            class="auto-complete dropdown-menu"
             ref="list"
             tabindex="-1"
-            :id="elementId('UL')"
-            @blur="onFocusOut">
-            <i v-if="isLoading" class="auto-complete-spinner" :class="loadingIconClass"/>
-            <li v-for="(suggestion, index) in suggestions"
+            v-show="open">
+            <i :class="loadingIconClass" class="auto-complete-spinner" v-if="isLoading"/>
+            <li :class="bindClass(index,suggestion)"
                 :key="index"
+                @click="selectSuggestion(index)"
                 class="auto-complete"
-                :class="bindClass(index,suggestion)"
-                @click="selectSuggestion(index)">
+                v-for="(suggestion, index) in suggestions">
                 <component :is="modeIdentifiers[getMode].comp"
                            :mention="suggestion">
                 </component>
             </li>
 
-            <li v-if="suggestions.length === 0"
-                class="auto-complete disabled">
+            <li class="auto-complete disabled"
+                v-if="suggestions.length === 0">
                 <a v-if="isLoading">
                     <small>Searching...</small>
                 </a>
@@ -124,7 +124,8 @@
                 current: 0,
                 selection: '',
                 mode: this.modeIdentifiers[0].mode,
-                elementIdMap: new Map()
+                elementIdMap: new Map(),
+                selectedULID:'',
             }
         },
         created() {
@@ -149,6 +150,9 @@
                 const uniqueId = uuid();
                 const newId = `${id}-${uniqueId}`;
                 this.elementIdMap.set(id, newId);
+                if (id === 'UL'){
+                    this.selectedULID = newId;
+                }
                 return newId;
             },
             getSelectionStart() {
@@ -247,13 +251,14 @@
                     this.identifierControl();
                 }
             },
-             scrollSelectedIntoView(){
-                let selected = document.getElementsByClassName("active");
-                if (selected[0] != null){
-                    let oH = document.getElementsByClassName('dropdown-menu')[0].offsetHeight;
-                    let oT = selected[0].offsetTop;                    
-                    let d = oT - oH;                    
-                    document.getElementsByClassName('dropdown-menu')[0].scrollTo(0, d+selected[0].clientHeight);          
+            scrollSelectedIntoView() {                
+                let parentUL = document.getElementById(this.selectedULID);                 
+                let selected = parentUL.getElementsByClassName("active");    
+                if (selected[0] != null) {
+                    let oH = parentUL.offsetHeight;  
+                    let oT = selected[0].offsetTop;
+                    let d = oT - oH;
+                    parentUL.scrollTo(0, d + selected[0].clientHeight);
                 }
             },
             updateSelectionAndPublishEvent(value) {
@@ -281,17 +286,19 @@
             },
             up(event) {
                 if (this.open) {
-                    if (this.suggestions.length > this.current && this.current > 0){                        
-                        this.current--;                        
-                    }                     
+                    if (this.suggestions.length > this.current && this.current > 0) {
+                        this.current--;
+                    }
+                    Vue.nextTick(() => this.scrollSelectedIntoView());
                     event.preventDefault();
                 }
             },
             down(event) {
                 if (this.open) {
-                    if (this.current >= 0 && this.suggestions.length -1 > this.current){                        
+                    if (this.current >= 0 && this.suggestions.length - 1 > this.current) {
                         this.current++;
-                    }                    
+                    }
+                    Vue.nextTick(() => this.scrollSelectedIntoView());
                     event.preventDefault();
                 }
             },
@@ -305,8 +312,7 @@
             },
             bindClass(index, suggestion) {
                 let className = "";
-                if (suggestion) {
-                     Vue.nextTick(() => this.scrollSelectedIntoView());
+                if (suggestion) {                    
                     if (index === this.current && suggestion.id !== "-1" && suggestion.id !== -1) {
                         className = "active ";
                     }

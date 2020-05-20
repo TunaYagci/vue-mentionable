@@ -125,7 +125,6 @@
                 selection: '',
                 mode: this.modeIdentifiers[0].mode,
                 elementIdMap: new Map(),
-                selectedULID:'',
             }
         },
         created() {
@@ -150,9 +149,6 @@
                 const uniqueId = uuid();
                 const newId = `${id}-${uniqueId}`;
                 this.elementIdMap.set(id, newId);
-                if (id === 'UL'){
-                    this.selectedULID = newId;
-                }
                 return newId;
             },
             getSelectionStart() {
@@ -252,7 +248,7 @@
                 }
             },
             scrollSelectedIntoView() {                
-                let parentUL = document.getElementById(this.selectedULID);                 
+                let parentUL = document.getElementById(this.elementIdMap.get('UL'));                
                 let selected = parentUL.getElementsByClassName("active");    
                 if (selected[0] != null) {
                     let oH = parentUL.offsetHeight;  
